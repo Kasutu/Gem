@@ -8,4 +8,6 @@ A minimal weekly scheduler for evreyone
 
 ## custom emulator startup
 
-`emulator -avd "oppo_A5s_API_27"`
+```
+emulator -avd "oppo_A5s_API_27"
+```
