@@ -11,4 +11,5 @@ A minimal weekly scheduler for evreyone
 
 ```
 emulator -avd "oppo_A5s_API_27"
+node start
 ```
