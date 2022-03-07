@@ -28,10 +28,8 @@ export const weekdays = [
 	'Saturday',
 ];
 
-const getDay = (selected) => {
+export function getDay(selected) {
 	if (selected === 'today') {
 		return `${weekdays[day]}, ${months[month]} ${date}, ${year}`;
 	}
-};
-
-export default getDay;
+}

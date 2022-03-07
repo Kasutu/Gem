@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, ScrollView } from 'react-native';
 import styles from '../styles/styles';
 import Card from '../components/card';
-import getDay from '../components/calendar';
+import { getDay } from '../components/calendar';
 import { getData } from '../modules/file-system';
 import { days } from '../components/keyHolder';
 import renderIf from '../modules/renderIf';
+import NavDash from '../components/navDash';
 
 export default function Today() {
 	// states
@@ -13,35 +14,19 @@ export default function Today() {
 	const [schedItems, setSchedItems] = useState([]);
 
 	function handleAddSched() {
+		setSched(getData(days[1]));
 		// only fire with the specific date assign in json
 		setSchedItems([...schedItems, sched]);
 		setSched(null);
 	}
 
-	const removeSched = (index) => {
+	function removeSched(index) {
 		let itemsCopy = [...schedItems];
 		itemsCopy.splice(index, 1);
 		setSchedItems(itemsCopy);
-	};
-
-	// buttons
-	function add() {
-		const data = getData(days[1]);
-		setSched(data);
-		handleAddSched();
-
-		console.log('added', data);
 	}
 
-	function today() {
-		console.log('today', schedItems.length);
-	}
-
-	function week() {
-		console.log('week');
-	}
-
-  // init the json object on initialize
+	// init the json object on initialize
 
 	return (
 		<View style={styles.container}>
@@ -90,42 +75,7 @@ export default function Today() {
 					</View>
 				</View>
 			</ScrollView>
-
-			{/* dashboard navigation */}
-			<View style={styles.dashboardWrapper}>
-				{/* Today button */}
-				<TouchableOpacity
-					onPress={() => {
-						today();
-					}}
-				>
-					<View style={styles.todayBtnWrapper}>
-						<Text style={styles.todayBtnText}>Today</Text>
-					</View>
-				</TouchableOpacity>
-
-				{/* plus button */}
-				<TouchableOpacity
-					onPress={() => {
-						add();
-					}}
-				>
-					<View style={styles.plusBtnWrapper}>
-						<Text style={styles.plusBtnText}>+</Text>
-					</View>
-				</TouchableOpacity>
-
-				{/* week button */}
-				<TouchableOpacity
-					onPress={() => {
-						week();
-					}}
-				>
-					<View style={styles.WeekBtnWrapper}>
-						<Text style={styles.WeekBtnText}>Week</Text>
-					</View>
-				</TouchableOpacity>
-			</View>
+			<NavDash />
 		</View>
 	);
 }

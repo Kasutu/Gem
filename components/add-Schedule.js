@@ -10,6 +10,7 @@ import {
 import styles from '../styles/addScheduleStyle';
 import { getDay } from '../components/calendar';
 import { storeData, getData } from '../modules/file-system';
+import { days } from '../components/keyHolder.js';
 
 let formMeta = {
 	day: null,
@@ -51,27 +52,27 @@ export default function AddSchedule() {
 		formMetaCopy.time.start = newTimeStart;
 		formMetaCopy.time.end = newTimeEnd;
 
-		storeData(keys[1], formMetaCopy);
+		storeData(days[1], formMetaCopy);
 		console.log('NEW DATA ----->', formMetaCopy);
 	}
 
 	function add() {
 		Keyboard.dismiss();
 
-		updateFormMeta(keys[1], title, description);
+		updateFormMeta(days[1], title, description);
 
 		// reset temp handlers to null
 		setTitle(null);
 		setDescription(null);
 
 		// store data in local storage
-		setDisplay(getData(keys[1]));
+		setDisplay(getData(days[1]));
 
 		console.log('added....');
 	}
 
 	function cancel() {
-		console.log(getData(keys[1]));
+		console.log(getData(days[1]));
 		Keyboard.dismiss();
 		console.log('canceled....');
 	}
