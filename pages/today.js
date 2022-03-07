@@ -3,6 +3,9 @@ import { TouchableOpacity, Text, View, ScrollView } from 'react-native';
 import styles from '../styles/styles';
 import Card from '../components/card';
 import getDay from '../components/calendar';
+import { getData } from '../modules/file-system';
+import { days } from '../components/keyHolder';
+import renderIf from '../modules/renderIf';
 
 export default function Today() {
 	// states
@@ -23,14 +26,22 @@ export default function Today() {
 
 	// buttons
 	function add() {
-		console.log('added');
+		const data = getData(days[1]);
+		setSched(data);
+		handleAddSched();
+
+		console.log('added', data);
 	}
+
 	function today() {
-		console.log('today');
+		console.log('today', schedItems.length);
 	}
+
 	function week() {
 		console.log('week');
 	}
+
+  // init the json object on initialize
 
 	return (
 		<View style={styles.container}>
@@ -61,18 +72,21 @@ export default function Today() {
 					</View>
 					<View style={styles.items}>
 						{/* where the Card cards will go */}
-						{schedItems.map((item, index) => {
-							return (
-								<TouchableOpacity
-									key={index}
-									onPress={() => {
-										removeSched(index);
-									}}
-								>
-									<Card text={item} />
-								</TouchableOpacity>
-							);
-						})}
+						{renderIf(
+							schedItems.length > 0,
+							schedItems.map((item, index) => {
+								return (
+									<TouchableOpacity
+										key={index}
+										onPress={() => {
+											removeSched(index);
+										}}
+									>
+										<Card title={item} description={item} />
+									</TouchableOpacity>
+								);
+							})
+						)}
 					</View>
 				</View>
 			</ScrollView>

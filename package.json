@@ -9,6 +9,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.8",
     "expo": "~44.0.0",
     "expo-dev-client": "~0.8.4",
     "expo-splash-screen": "~0.14.1",
@@ -17,6 +18,8 @@
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-mmkv": "^2.0.1",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1"
   },
   "devDependencies": {
