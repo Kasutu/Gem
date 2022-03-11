@@ -14,5 +14,5 @@ emulator -avd "oppo_A5s_API_27"
 ```
 start dev
 ```
-node start
+npm start
 ```
